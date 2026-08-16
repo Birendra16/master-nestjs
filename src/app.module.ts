@@ -18,6 +18,7 @@ import { ConfigModule } from '@nestjs/config';
 import { EvService } from './ev/ev.service';
 import { EvController } from './ev/ev.controller';
 import { MongooseModule } from '@nestjs/mongoose';
+import { TeacherModule } from './teacher/teacher.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { MongooseModule } from '@nestjs/mongoose';
       isGlobal: true,
     }),
     MongooseModule.forRoot(process.env.DATABASE_URL!),
+    TeacherModule,
   ],
   controllers: [
     AppController,
