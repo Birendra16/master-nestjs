@@ -26,6 +26,24 @@ export class TeacherService {
     id: string,
     data: Partial<Teacher>,
   ): Promise<Teacher | null> {
+    // return this.teacherModel.findByIdAndUpdate(id, data, { new: true }).exec();
+    const updated = this.teacherModel.findByIdAndUpdate(
+      id,
+      {
+        name: data.name ?? null,
+        age: data.age ?? null,
+        email: data.email ?? null,
+      },
+      { overwrite: true, new: true },
+    );
+
+    return updated;
+  }
+
+  async patchTeacher(
+    id: string,
+    data: Partial<Teacher>,
+  ): Promise<Teacher | null> {
     return this.teacherModel.findByIdAndUpdate(id, data, { new: true }).exec();
   }
 }
