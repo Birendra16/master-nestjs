@@ -1,0 +1,16 @@
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Teacher, TeacherDocument } from './schemas/teacher.schema';
+import { Model } from 'mongoose';
+
+@Injectable()
+export class TeacherService {
+  constructor(
+    @InjectModel(Teacher.name) private teacherModel: Model<TeacherDocument>,
+  ) {}
+
+  async createTeacher(data: Partial<Teacher>): Promise<Teacher> {
+    const newTeacher = new this.teacherModel(data);
+    return newTeacher.save();
+  }
+}
