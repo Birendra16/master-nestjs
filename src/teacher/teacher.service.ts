@@ -21,4 +21,11 @@ export class TeacherService {
   async getTeacherById(id: string): Promise<Teacher | null> {
     return this.teacherModel.findById(id).exec();
   }
+
+  async updateTeacher(
+    id: string,
+    data: Partial<Teacher>,
+  ): Promise<Teacher | null> {
+    return this.teacherModel.findByIdAndUpdate(id, data, { new: true }).exec();
+  }
 }
