@@ -13,4 +13,12 @@ export class TeacherService {
     const newTeacher = new this.teacherModel(data);
     return newTeacher.save();
   }
+
+  async getAllStudents(): Promise<Teacher[]> {
+    return this.teacherModel.find().exec();
+  }
+
+  async getTeacherById(id: string): Promise<Teacher | null> {
+    return this.teacherModel.findById(id).exec();
+  }
 }
